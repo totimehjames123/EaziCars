@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="user-page.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css" integrity="xxxxxxxx" crossorigin="anonymous" />
+    <title>EaziMotors - Admin</title>
+</head>
+<body>
+    
+
+      <!-- Body -->
+      <div class="bg-dark sideNavBar" id="sideNavBar" style="z-index: 1;">
+        <div class="logo p-2">
+            <a class="navbar-brand text-warning fw-bold fs-3" href="#">Eazi<span class="text-white">Motors</span></a>
+            <span class="hideSideBarButtonContainer">
+                <button class="btn btn-dark text-white" id="hideSideBarButton" class="hideSideBarButton" style="position: absolute; right: 0; font-size: larger;" onclick="hideSideBar()">&times;</button>
+            </span>
+        </div>
+        <div class="navigation m-2">
+            <h6 class="h6 text-secondary text-sm-2">Admin</h6>
+            <ul class="m-0">
+                <li class="active"><span class="fa-thin fa-regular fa-gauge-low text-white"></span><a href="admin-page.html">Dashboard</a></li>
+                <li class="non-active"><span class="fa-thin fa-car text-white"></span><a href="all-vehicles.html">All Vehicles</a></li>
+                <li class="non-active"><span class="fa-thin fa-industry text-white"></span><a href="brands.html">Brands</a></li>
+                <li class="non-active"><span class="fa-thin fa-users text-white"></span><a href="users.html">Users</a></li>
+                <li class="non-active"><span class="fa-thin fa-quote-left text-white"></span><a href="testimonials.html">Testimonials</a></li>
+                <li class="non-active"><span class="fa-thin fa-id-card"></span><a href="profile.html">Profile</a></li>
+                <li class="non-active"><span class="fa-thin fa-sign-out-alt"></span><a href="index.html">Logout</a></li>
+            </ul>
+        </div>
+        
+    </div>
+            
+        </div>
+        <div class="mainContainer" id="mainContainer">
+            <div class=" topNavBar" style="height: 50px; width: 100%;">
+                <span class="sideNavBarButtonContainer">
+                    <i id="sideNavBarButton" style="padding-top: 10px; padding-right: 5px; padding-left: 10px;" onclick="showSideNavBar()" class="mb-2 fa-solid fa-bars sideNavBarButton fs-2 " style="float: left; width: 5%; margin-top: 20px;" ></i>
+                </span>
+                <span class="pt-1 profilePicture">
+                    <img src="images/image1.jpg" alt="" class="rounded-circle border border-warning">
+                </span>
+            </div>
+            
+
+            <div class="container itemForm overflow-hidden" id="itemForm" style="clear: both;">
+                <h2>Brands</h2>
+                <div class=" overflow-scroll" style="height: 80vh; width: 100%;">
+                <div class="grid-container" style="height: auto;">
+                    <div class="border rounded bg-white" style="box-shadow: 1px 2px 3px whitesmoke;">
+                        <div class="">
+                            <h6 class="fw-bold">Registered Users</h6>
+                            <div class="" style="width: 70%; float: left; ">
+                                <p class="display-4 text-warning">21</p>
+                            </div>
+                            <div class="" style="width: 30%; float: left; padding-top: 5%;">
+                                <i class="fa-thin fa-car fa-2x p-0 text-warning"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="text-start" style="clear:both; padding-left: 20px; padding-right: 20px;">
+                            <hr >
+                            Up from yesterday
+                        </div>
+
+                    </div>
+
+                    <div class="border rounded bg-white" style="box-shadow: 1px 2px 3px whitesmoke;">
+                        <div class="">
+                            <h6 class="fw-bold">All my Subscribers</h6>
+                            <div class="" style="width: 70%; float: left;">
+                                <p class="display-4 text-warning">21</p>
+                            </div>
+                            <div class="" style="width: 30%; float: left; padding-top: 5%;">
+                                <i class="fa-thin text-warning fa-users fa-2x pb-0"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="text-start" style="clear:both; padding-left: 20px; padding-right: 20px;">
+                            <hr >
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#viewSubscribers">View</button>
+                            
+                            <!-- Add Car modal -->
+                            <div class="modal fade" id="viewSubscribers" tabindex="-1" aria-labelledby="viewSubscribersLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="viewSubscribersLabel">Subscribers</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="border rounded p-1 w-100" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+                                        
+                                        <div class="border rounded p-1 w-100 mt-1" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+
+                                        <div class="border rounded p-1 w-100 mt-1" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+
+                                        <div class="border rounded p-1 w-100 mt-1" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+
+                                        <div class="border rounded p-1 w-100 mt-1" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+
+                                        <div class="border rounded p-1 w-100 mt-1" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+
+                                        <div class="border rounded p-1 w-100 mt-1" style="height: 50px;">
+                                            <img class="rounded-circle border" src="images/trestle.jpg" alt="" style="height: 40px; width: 40px; float: left; margin-right: 10px;">
+                                            <small style="float: left; ">
+                                                <b style="line-height: -10px;">Some name</b><br>
+                                                <span style="font-size: 11px; ">someemail.com <b>| now</b> </span>
+                                            </small>
+                                        </div>
+
+                                        <div>
+                                            <button class="btn btn-dark btn-sm mt-3">See more</button>
+                                        </div>
+
+                                        
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="border rounded bg-white" style="box-shadow: 1px 2px 3px whitesmoke;">
+                        <div class="">
+                            <h6 class="fw-bold">Active Customers</h6>
+                            <div class="" style="width: 70%; float: left; ">
+                                <p class="display-4 text-warning">21</p>
+                            </div>
+                            <div class="" style="width: 30%; float: left; padding-top: 5%;">
+                                <i class="fa fa-car fa-2x pb-0"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center" style="clear:both; padding-left: 20px; padding-right: 20px;">
+                            <hr >
+                            dsfd
+                        </div>
+
+                    </div>    
+                    <div class="border rounded bg-white" style="box-shadow: 1px 2px 3px whitesmoke;">
+                        <div class="">
+                            <h6 class="fw-bold">Active Customers</h6>
+                            <div class="" style="width: 70%; float: left; ">
+                                <p class="display-4 text-warning">21</p>
+                            </div>
+                            <div class="" style="width: 30%; float: left; padding-top: 5%;">
+                                <i class="fa fa-car fa-2x pb-0"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center" style="clear:both; padding-left: 20px; padding-right: 20px;">
+                            <hr >
+                            dsfd
+                        </div>
+
+                    </div>             
+         
+                
+                </div>
+                <div class="container  pt-1">
+                    <!-- Table for car booking history -->
+                    <div class=" text-start p-4 border rounded bg-white border-warning">
+                        <h4>Registered Users</h4>
+                        <div class="table-responsive">
+                        <table class="table  table-striped">
+                        <thead>
+                            <tr>
+                            <th>#</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Age</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>1</td>
+                            <td>Anna</td>
+                            <td>Pitt</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Anna</td>
+                                <td>Pitt</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Anna</td>
+                                <td>Pitt</td>
+                            </tr>
+                                
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+     
+
+    <script src="admin-page.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

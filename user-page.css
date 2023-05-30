@@ -1,0 +1,260 @@
+/* Nav bar */
+*{
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+    -ms-overflow-style: none;
+}
+*::-webkit-scrollbar{
+    display: none;
+}
+/* Side Nav Bar */
+.sideNavBarButtonContainer{
+    visibility: hidden;
+}
+.hideSideBarButtonContainer{
+    visibility: hidden;
+}
+.sideNavBar{
+    width: 20%;
+    height: 100vh;
+    float: left;
+    overflow: hidden;
+}
+.navigation ul li{
+    margin-left: -40px;
+    text-decoration: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    color: white;
+}
+.navigation ul li img{
+    margin-right: 10px;
+}
+.navigation ul li span{
+    padding: 0 10px 0 10px;
+}
+.navigation ul li span.fa{
+    padding: 0 10px 0 20px;
+}
+.navigation ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.navigation ul li:hover{
+    background: rgb(61, 61, 61);
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+ 
+.navigation ul li.active{
+    list-style-type: none;
+    position: relative;
+
+}
+.navigation ul li.active::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: orange;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.navigation ul li.non-active{
+    list-style-type: none;
+    position: relative;
+
+}
+.navigation ul li.non-active::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.searchInput{
+    width: 70%;
+    padding: 7px;
+}
+.searchInput:focus{
+    outline: none;
+}
+/* Main Container */
+.mainContainer{
+    width: 80%;
+    height: 100vh;
+    float:left;
+    overflow: hidden; 
+}
+
+.modalProfilePicture{
+    width: 200px;
+    height: 200px;
+}
+
+
+.mobileUpdateButton{
+    display: none;
+}
+
+/* Item list */
+
+/* Post Self */
+.grid-container {
+    display: grid;
+    height: 80vh;
+    align-content: start;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+    overflow: scroll;
+}
+  
+  .grid-container > div {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .grid-container > div img{
+    width: 100%;
+    height: 30vh;
+  }
+
+  .profilePicture{
+    max-width: 10%;
+    position: absolute; 
+    right: 30px
+  }
+
+.profilePicture img{
+    width: 50px;
+    height: 50px;
+}
+
+.updatePhotoCamera{
+    position: absolute;
+    transform: translate(-50px, 160px);
+}
+
+
+
+/* For tablets */
+@media screen and (max-width: 1100px){
+    .profilePicture img{
+        width: 40px;
+        height: 40px;
+    }
+    .searchInput{
+        padding: 5px;
+    }
+    
+    .sideNavBar{
+        display: block;
+        width: 30%;
+    }
+    .grid-container{
+        grid-template-columns: auto auto;
+    }
+    .mainContainer{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 770px){
+    .hideSideBarButtonContainer{
+        visibility: visible;
+    }
+    .sideNavBarButtonContainer{
+        visibility: visible;
+    }
+    .itemForm{
+        height: auto;
+    }
+    .sideNavBar{
+        display: none;
+        position: absolute;
+        width: 50%;
+    }
+    .grid-container{
+        grid-template-columns: auto auto;
+        width: 100%;
+    }
+    .profilePicture{
+        right: 10px;
+    }
+    .searchInput{
+        width: 80%;
+        
+    }
+    .mainContainer{
+        width: 100%;
+    }
+}
+
+
+/* Mobile Phones */
+@media screen and (max-width: 500px){
+    .sideNavBar{
+        width: 80%;
+    }
+    
+    .grid-container{
+        grid-template-columns: auto;
+        width: 100%;
+        overflow: scroll;
+        grid-gap: 1px;
+    }    
+    .mainContainer{
+        height: 100vh;
+    }
+    .profilePicture{
+        right: 10px;
+    }
+}
+
+
+@media screen and (max-width: 350px){
+    .searchInput{
+        width: 60%;
+    }
+    
+}
+
+@media screen and (max-width: 270px){
+    .mobileUpdateButton{
+        display: block;
+    }
+    .pcUpdateButton{
+        display: none;
+    }
+}
+@media screen and (max-width: 250px){
+    .sideNavBar{
+        width: 95%;
+    }
+    .searchInput{
+        width: 60%;
+    }
+    .profilePictureIndex{
+        z-index: -1;
+    }
+    .modalProfilePicture{
+        width: 150px;
+        height: 150px;
+    }
+    .updatePhotoCamera{
+        position: absolute;
+        transform: translate(-30px, 100px);
+    }
+
+}

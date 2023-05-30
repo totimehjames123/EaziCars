@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My E-commerce Website</title>
+  </head>
+  <body>
+    <input type="text" value="" id="searchInput" placeholder="Search...">
+
+    <h1>Add Item</h1>
+    <form id="itemForm">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" name="itemName"><br>
+
+      <label for="itemPrice">Item Price:</label>
+      <input type="number" id="itemPrice" name="itemPrice"><br>
+
+      <label for="itemImage">Item Image:</label>
+      <input type="file" id="itemImage" name="itemImage"><br>
+
+      <input type="submit" value="Add Item">
+    </form>
+
+    <h1>Items</h1>
+    <button type="button" value="some" id="searchButton">some</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody id="itemList">
+      </tbody>
+    </table>
+
+    <script src="admin-page.js"></script>
+  </body>
+</html>

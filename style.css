@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+/* Nav bar */
+*{
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+/* Nav links */
+.navLinks{
+    color: black;
+    text-decoration: none;
+    position: relative;
+}
+.navLinks:hover{
+    color: orange;
+    font-size: larger;
+}
+
+
+.navLinks:before{
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 50px;
+    background: orange;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .4s linear;
+    bottom: -5px;
+}
+.navLinks:hover:before{
+    transform:scale(1);
+    transform-origin: left;
+}
+
+/*  Carousel */
+.carousel-item{
+    height: 90vh;
+}
+
+h1::before{
+    position: absolute;
+    content: '';
+    height: 5px;
+    width: 50px;
+    background: orange;
+    transform: scaleX(2);
+    transform-origin: left;
+    transition: transform .4s linear;
+    bottom: -5px;
+    border-radius: 5px;
+}
+
+/* Services Column */
+.services-columns{
+    margin: 1px;
+}
+
+.services-columns:hover{
+    background: black;
+    color: white;
+}
+
+
+
+/* Vehicles */
+.vehicles-columns{
+    margin: 1px;
+}
+.vehicles-columns:hover{
+    background: black;
+    color: white;
+}
+.vehicles-columns img{
+    width: 220px;
+    height: 150px;
+}
+.vehicles-columns:hover img{
+    width: 200px;
+    height: 140px;
+}
+
+/* Testimonials */
+.testimonialDisplay{
+    box-shadow: 2px 3px 4px lightgray;
+}
+
+.carousel-caption{
+    width: 50%;
+    opacity: 0.8;
+    padding: 50px;
+}
+
+
+
+/* Social Media Links */
+.social-media li a i{
+    color: white;
+    font-size: 30px;
+}
+.social-media li a:hover i{
+    border-radius: 50%;
+    padding: 8px;
+    color: orange;
+    background-color: white;
+    font-size: 20px;
+}
+
+
+/* FOR TABLETS */
+@media screen and (max-width: 770px){
+    .testimonialHide{
+        display: none;
+    }
+
+    .carousel-caption{
+        position: absolute;
+        left: 50px;
+        width: 80%;
+        padding: 50px;
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media screen and (max-width: 400px) {
+    /*  Carousel */
+    .carousel-item{
+        height: 60vh;
+    }
+
+    .testimonialHide{
+        display: none;
+    }
+    .carousel-caption{
+        width: 100%; 
+       position: absolute;
+       left: 0;
+       opacity: 0.7;
+       font-weight: bold;
+       max-height: 80%;
+       overflow: hidden;
+       text-overflow: ellipsis;
+    }
+    .carousel-caption h5{
+        font-weight: bold;
+    }
+    
+}

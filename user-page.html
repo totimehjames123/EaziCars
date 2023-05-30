@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="user-page.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css" integrity="xxxxxxxx" crossorigin="anonymous" />
+    <title>EaziMotors - Users</title>
+</head>
+<body>
+
+    <!-- Password change modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="passwordModalLabel">Update Your Password</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                      <label for="currentPassword" class="form-label">Current password</label>
+                      <input type="password" class="form-control" id="currentPassword" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="newPassword" class="form-label">New password</label>
+                      <input type="password" class="form-control" id="newPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Update</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- Modal display for profile picture -->
+    <div class="modal fade" id="profilePictureModal" tabindex="-1" aria-labelledby="profilePictureModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <h5 class="modal-title" id="profilePictureModalLabel">Your profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center" style="height: 230px;">
+                    <img class="border rounded-circle border-warning modalProfilePicture" src="images/car-6.png" alt="">
+                    <span class="updatePhotoCamera"><button class="rounded-circle border border-0 bg-warning" style="width: 35px; height: 35px;"><i class="fa fa-camera"></i></button></span>
+                </div>
+                <div class="text-center">
+                    <h4>James Totimeh</h4>
+                    <small><b>james123@gmail.com</b></small>
+                </div>
+                <div class="mt-5 pcUpdateButton">
+                    <button class="btn btn-sm btn-dark" style="float: left;">Update</button>
+                    <button class="btn-warning btn-sm btn" id="passwordModal" data-bs-toggle="modal" data-bs-target="#passwordModal" style="float: right;">Change Password</button>
+                </div>
+                <div class="mt-5 mobileUpdateButton">
+                    <button class="btn btn-sm btn-dark btn-block w-100 mb-2">Update</button>
+                    <button class="btn-warning btn-sm btn btn-block w-100" id="passwordModal" data-bs-toggle="modal" data-bs-target="#passwordModal" >Change Password</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+    <!-- Body -->
+    <div class="bg-dark sideNavBar" id="sideNavBar">
+        <div class="logo p-2 position-relative">
+            <a class="navbar-brand text-warning fw-bold fs-3" href="#">Eazi<span class="text-white">Motors</span></a>
+            <span class="hideSideBarButtonContainer">
+                <button class="btn btn-dark" id="hideSideBarButton" class="hideSideBarButton" style="position: absolute; right: 0; font-size: larger;" onclick="hideSideBar()">&times;</button>
+            </span>
+        </div>
+        <div class="navigation m-2">
+            <h6 class="h6 text-secondary text-sm-2">Vehicles</h6>
+            <ul class="m-0">
+                <li class="active"><span class="fa fa-cars fa-thin text-white"></span><a href="user-page.html">All Vehicles</a></li>
+                <li class="non-active"><span class="fa fa-quote-left fa-thin text-white"></span><a href="users-testimonials.html">Testimonials</a></li>
+                <li class="non-active"><span class="fa fa-industry fa-thin text-white"></span><a href="">Brands</a></li>
+                <li class="non-active"><span class="fa fa-id-card fa-thin text-white"></span><a href="">Account</a></li>
+            </ul>
+        </div>
+        <div class="navigation overflow-hidden position-relative mt-3">
+            <h6 class="h6 m-2 text-secondary text-sm-2">Top Searches</h6>
+            <ul class="m-0 overflow-scroll position-relative" style="height: 35vh;">
+                <li onclick="searchNissanFrontier()" id="searchNissanFrontier" class="non-active"><span></span><img src="images/image1.jpg" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Nissan Frontier</li>
+                <li onclick="searchToyotaCamry()" id="searchToyotaCamry" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Toyota Camry</li>
+                <li onclick="searchFordTransit()" id="searchFordTransit" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Ford Transit</li>
+                <li onclick="searchKiaPride()" id="searchKiaPride" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Kia Pride</li>
+                <li onclick="searchToyotaCorolla()" id="searchToyotaCorolla" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Totota Corolla</li>
+                <li onclick="searchHyundai420()" id="searchHyundai420" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Hyundai 420</li>
+                <li onclick="searchHondaCivic()" id="searchHondaCivic" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Honda Civic</li>
+                <li onclick="searchHyundaiElantra()" id="searchHyundaiElantra" class="non-active"><span></span><img src="images/car-6.png" class="rounded border border-warning border-2" width="40px" height="40px" alt="">Hyundai Elantra</li>
+            </ul>
+        </div>
+    </div>
+    <div class="mainContainer bg-light">
+        <div class="topNavBar" style="height: 50px; width: 100%;">
+            <div class="sideNavBarButtonContainer text-center" style="float: left; width: 20%;">
+                <i id="sideNavBarButton" style="padding-top: 10px; padding-right: 5px; padding-left: 10px;" onclick="showSideNavBar()" class="mb-2 fa-solid fa-bars fs-2 sideNavBarButton" style="float: left; width: 5%; padding-top: 10px;" ></i>
+            </div>
+
+            <div class="" style="float: left; width: 60%;">
+                <input class="border border-warning searchInput mt-1 w-100" style="border-radius: 15px;" type="search" id="searchInput" placeholder="Search" aria-label="Search">  
+            </div>
+            <div class="pt-1 profilePicture" id="profilePicture" style="float: left; width: 20%; text-align: center;">
+                <button type="button" id="profilePictureModal" data-bs-toggle="modal" data-bs-target="#profilePictureModal" class="p-0" style="background: none; border: none;">
+                    <img src="images/image1.jpg" alt="" class="rounded-circle border border-warning">
+                </button>
+
+            </div>
+            
+            
+        </div>
+
+        
+        
+
+        <div class="container itemForm" id="itemForm" style="clear: both;">
+            <h2>All Vehicles</h2>
+            <div id="noResults" class="noResults text-center" ></div>
+            <div id="itemList"  class="itemList grid-container"></div>
+        </div>
+    </div>
+     
+        
+    <script src="index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

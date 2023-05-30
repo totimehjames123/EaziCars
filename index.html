@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css" integrity="xxxxxxxx" crossorigin="anonymous" />
+    <title>EaziMotors</title>
+  </head>
+
+  <script>
+      function handleSignUp(event) {
+        event.preventDefault(); // Prevent form submission
+        const name = document.getElementById("signupName").value;
+        const email = document.getElementById("signupEmail").value;
+        const password = document.getElementById("signupPassword").value;
+
+        // Get the existing users data from local storage or create an empty array
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Check if the email already exists in the users array
+        const emailExists = users.some(user => user.email === email);
+
+        if (emailExists) {
+          // Show an error message
+          alert("An account with this email address already exists. Please try another email address.");
+        } else {
+          // Create a new user object
+          const user = {
+            name,
+            email,
+            password
+          };
+
+          // Push the new user object into the array
+          users.push(user);
+
+          // Store the updated users data in the local storage
+          localStorage.setItem("users", JSON.stringify(users));
+
+          // Redirect the user to the login page
+          // window.location.href = "login.html";
+          alert("Account created successfully! You can now login.");
+        }
+      }
+
+
+
+
+      // login
+      function handleLogin(event) {
+        event.preventDefault(); // Prevent form submission
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        sessionStorage.setItem("loginEmail", email);
+        sessionStorage.setItem("loginPassword", password)
+
+        // Get the existing users data from local storage or create an empty array
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Find the user with the matching email and password
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+          // Redirect the user to the home page
+          window.location.href = "user-page.html";
+        } else {
+          // Show an error message
+          alert("Invalid email or password. Please try again.");
+        }
+      }
+  </script>
+  <body>
+
+    <!-- Navbar begins -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top border">
+      <div class="container">
+        <a class="navbar-brand text-warning fw-bold fs-3" href="#">Eazi<span class="text-dark">Motors</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-75 d-flex justify-content-center" style="font-size: large;">
+            <li class="nav-item">
+              <a class="navLinks" aria-current="page" href="#" style="margin: 0 30px 0 0;">Home</a>
+            </li>
+            <li class="nav-item" style="margin: 0 30px 0 0;">
+              <a class="navLinks" href="#services">Services</a>
+            </li>
+            <li class="nav-item" style="margin: 0 30px 0 0;">
+              <a class="navLinks" href="#vehicles">Vehicles</a>
+            </li>
+            
+            <li class="nav-item" style="margin: 0 30px 0 0;">
+              <a class="navLinks" href="#testimonials">Testimonials</a>
+            </li>
+            <li class="nav-item" style="margin: 0 30px 0 0;">
+              <a class="navLinks" href="#contact">Contact</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button type="button" class="btn btn-outline-warning" style="margin-right: 2px;"  data-bs-toggle="modal" data-bs-target="#loginModal">Log In</button>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar ends -->
+
+    <!-- signup modals -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <div class="mb-3">
+                  <label for="signupName" class="form-label">Full name</label>
+                  <input type="text" class="form-control" id="signupName" required>
+                </div>
+                <label for="signupEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp" required>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="signupPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signupPassword" required>
+              </div>
+              <button type="submit" onclick="handleSignUp(event)" class="btn btn-primary">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Login modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Log In</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" required>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+              </div>
+              <button type="submit" class="btn btn-primary" onclick="handleLogin(event)">Log In</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- First container begins -  Carousel-->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000" class="">
+          <img src="images/image1.jpg" class="d-block w-100" alt="..." style="height: 100%;">
+          <div class="carousel-caption d-md-block bg-white m-auto" >
+            <h5 class="text-warning">Quality And Affordable Vehicles</h5>
+            <p>We offer our customers quality and affordable services by providing them with vehicles of their interest, quality and luxurious vehicles at affordable prices.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="images/image2.jpg" class="d-block w-100" alt="..." style="height: 100%;">
+          <div class="carousel-caption d-md-block bg-white  m-auto" >
+            <h5 class="text-warning">Luxuries Vehicles</h5>
+            <p>Our cars are luxurious, classy and good-looking for your weddings, parties, engagements, outings and etc.</p>
+          </div>
+        </div>
+        <div class="carousel-item" >
+          <img src="images/image3.jpg" class="d-block w-100" alt="..." style="height: 100%;">
+          <div class="carousel-caption  d-md-block bg-white  m-auto">
+            <h5 class="text-warning">High Speed Vehicles</h5>
+            <p>We also rent high speed vehicles with quality engines with high capacities which you can use for long journey trips.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="" aria-hidden="true"></span>
+        <span class="visually-hidden text-warning">Next</span>
+      </button>
+    </div>
+    <!-- First container ends -->
+
+    <!-- Second Container begins -->
+    <div class="container" style="min-height: 100vh;">
+      <div class="text-center position-relative pb-5">
+        <h1 class="pt-5 text-center position-relative" id="services">Our Services</h1>
+      </div>
+      <div class="row">
+        <div class="col p-5 services-columns text-center border rounded" style="box-shadow: 1px 2px 3px whitesmoke;">
+          <div class="">
+            <i class="fa-solid fa-car fa-2x text-dark bg-warning rounded-circle p-3 mb-4" ></i>
+          </div>
+          <div class="">
+            <h4>Car Rentals</h4> 
+          </div>
+          <div class="">
+            A Car Rental, Hire Car, Or Car Hire Agency Is A Company That Rents Automobiles For Short Periods Of Time To The Public, Generally Ranging From A Few Hours To A Few Weeks.
+          </div>
+        </div>
+
+        <div class="col p-5 services-columns text-center border rounded" style="box-shadow: 1px 2px 3px whitesmoke;">
+          <div class="">
+            <i class="fa-solid fa-car fa-2x text-dark bg-warning rounded-circle p-3 mb-4" ></i>
+          </div>
+          <div class="">
+            <h4>Car Rentals</h4> 
+          </div>
+          <div class="">
+            A Car Rental, Hire Car, Or Car Hire Agency Is A Company That Rents Automobiles For Short Periods Of Time To The Public, Generally Ranging From A Few Hours To A Few Weeks.
+          </div>
+        </div>
+
+        <div class="col p-5 services-columns text-center border rounded" style="box-shadow: 1px 2px 3px whitesmoke;">
+          <div class="">
+            <i class="fa-solid fa-car fa-2x text-dark bg-warning rounded-circle p-3 mb-4" ></i>
+          </div>
+          <div class="">
+            <h4>Car Rentals</h4> 
+          </div>
+          <div class="">
+            A Car Rental, Hire Car, Or Car Hire Agency Is A Company That Rents Automobiles For Short Periods Of Time To The Public, Generally Ranging From A Few Hours To A Few Weeks.
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!-- Second Container ends -->
+
+    <!-- Third Container begins -->
+    
+      <div class="container" id="vehicles">
+        <div class="text-center position-relative pb-5">
+          <h1 class="pt-5 text-center position-relative" id="vehicles">Popular Vehicles</h1>
+        </div>
+        <div class="row">
+          <!-- Col 1 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-1.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+          
+          <!-- Col 2 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-2.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-3.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+
+          <!-- Col 1 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-1.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+          
+          <!-- Col 2 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-2.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-3.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-2.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="col-sm pb-5 text-center box-shadow vehicles-columns border rounded" style="box-shadow: whitesmoke 1px 2px 3px;">
+            <div class="text-center mb-4" style="height: 150px; width: 100%;">
+              <img src="images/popular-vehicle-3.png" class="" alt="">
+            </div>
+            <div class="text-center p-0"> 
+              <h4 class="text-center fw-bold">PEUGUOT</h4>
+              
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star-half-alt text-warning"></i>
+
+              <h5 class="pb-2 pt-2">GH₵ 500.00</h5>
+              <button class="btn btn-dark">Check Out</button>
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+      
+    
+    <!-- Third Container ends -->
+
+    <!-- Fourth Container begins -->
+    <div class="container position-relative" >
+      <div class="text-center position-relative pb-5">
+        <h1 class="pt-5 text-center position-relative" id="testimonials">Testimonials</h1>
+      </div>
+      <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner" style="height: 60vh;">
+          <div class="carousel-item active" data-bs-interval="10000" class="">
+            <div class="row ">
+              <div class="col text-center position-relative  p-4 testimonialHide" style="opacity: 0.3;">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+              <div class="col text-center testimonialDisplay">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+              <div class="col text-center testimonialHide" style="opacity: 0.3;">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <div class="row ">
+              <div class="col text-center position-relative   p-4 testimonialHide" style="opacity: 0.3;">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+              <div class="col text-center testimonialDisplay">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+              <div class="col text-center testimonialHide" style="opacity: 0.3;">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" >
+            <div class="row ">
+              <div class="col text-center position-relative   p-4 testimonialHide" style="opacity: 0.3;">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+              <div class="col text-center testimonialDisplay">
+                <div class="position-relative mb-4">
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+              <div class="col text-center testimonialHide" style="opacity: 0.3;">
+                <div class="position-relative mb-4" >
+                  <img style="width: 100px; height: 100px;" class="rounded-circle" src="images/image1.jpg" alt="">
+                </div>
+                <div class="mb-2">
+                  <h4>James Tetteh</h4>
+                  <p>I've been using this platform for a very long time and it has 
+                    helped me gotten access to nice vehicles</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+          <span class="" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+          <span class="" aria-hidden="true"></span>
+          <span class="visually-hidden text-warning">Next</span>
+        </button>
+      </div>
+    </div>
+    <!-- Fourth Container ends -->
+
+
+    <!-- Fifth Container begins (Footer) -->
+    <footer class="bg-dark text-white" id="contact">
+      <div class="text-center position-relative pb-5">
+        <h1 class="pt-5 text-center position-relative" id="contact">Contact Us</h1>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-4">
+              <a class="navbar-brand text-warning fw-bold fs-3" href="#">Eazi<span class="text-white">Motors</span></a>
+              <br>
+              <div style="padding-right: 10px;">
+                EasyMotors is a small-scale rental company that provides
+                quality, nice-looking vehicles to their clients for their weddings, parties and other ceremonies. 
+              </div>
+            </div>
+            <h3>Address</h3>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=123+Main+St,+Anytown+USA" target="_blank" style="color:white; text-decoration: none;">123 Main St, Anytown USA</a></p>
+            <p><a href="tel: +233556273245" target="_blank" style="color:white; text-decoration: none;">Phone: +233556273245</a></p>
+            <p><a href="mailto: totimehjames123@gmail.com" target="_blank" style="color:white; text-decoration: none;">Email: totimehjames123@gmail.com</a></p></p>
+          </div>
+          <div class="col-md-4">
+            <h3>Our branches</h3>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=123+Main+St,+Anytown+USA" target="_blank" style="color:white; text-decoration: none;">123 Main St, Anytown USA</a></p>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=123+Main+St,+Anytown+USA" target="_blank" style="color:white; text-decoration: none;">123 Main St, Anytown Ghana</a></p>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=123+Main+St,+Anytown+USA" target="_blank" style="color:white; text-decoration: none;">123 Main St, Anytown China</a></p>
+          
+            <h3>Social Media</h3>
+            <ul class="list-inline social-media">
+              <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+            
+          </div>
+          <div class="col-md-4">
+            <h3>Get in touch</h3>
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" placeholder="Tell us something ..." id="message" rows="3"></textarea>
+              </div>
+              <div class="form-group pt-2">
+                <input id="subscribe" type="checkbox">
+                <label for="subscribe">Subscribe</label>
+              </div>
+              <div class="pt-2">
+                <button type="submit" class="btn btn-outline-warning w-100">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr class="bg-white">
+            <p class="text-center"><span class="">&reg;</span> 2023 EaziMotors Rentals. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
